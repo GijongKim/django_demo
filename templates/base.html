@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title%}
+    {% endblock %}
+  </head>
+  <body>
+    <nav>
+      <span><a href="{% url "blog:home" %}">blog</a></span>
+      {%if not user.is_authenticated%}
+      <span><a href="{% url "my_accounts:login" %}">login</a></span>
+      {%else%}
+      <span>
+        <form action = '{% url 'my_accounts:logout' %}' method = 'post'>
+          {% csrf_token %}
+          <button type = 'submit'>log-out</button>
+        </form>
+      </span>
+      {%endif%}
+    </nav>
+    {% block main %}
+    {% endblock %}
+    <footer> 푸터 입니다. </footer>
+  </body>
+</html>

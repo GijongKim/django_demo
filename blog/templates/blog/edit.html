@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+    {% block title %}
+    <title>my blog-수정 페이지</title>
+    {% endblock %}
+</head>
+<body>
+    {% block main %}
+    <h1>여기는 블로그 글 수정 페이지야</h1>
+    <form action = "/blog/post-edit/{{ id }}/" method="post" id="blog-write">
+        {%csrf_token%} 
+        {% comment %} 실제 포스트 요청을 보낼 때, 쿠키에 토큰 값을 같이 보내줌. 장고가 만든 페이지에서 보냈다는 증거물? 같은 것. {% endcomment %}
+        <input type = "text" 
+        placeholder="제목을 입력해주세요"
+        name="title"
+        value = "{{title}}"/>
+        {% comment %} 기본 값 : value, 입력 값 기본 : placeholder {% endcomment %}
+        <input type ="submit">
+        {% comment %} 제출 버튼 생성 {% endcomment %}
+    </form>
+<textarea placeholder="내용을 입력해 주세요." form="blog-write" name="content">{{ content }}</textarea>
+{% comment %} 기존 작성 페이지에 content 값 넣어주기 {% endcomment %}
+{% endblock %}
+</body>
+</html>

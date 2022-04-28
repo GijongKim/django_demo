@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block title%}
+<title>login page</title>
+{%endblock%}
+
+{%block main%}
+<h1>This is login page</h1>
+
+{%if error%}
+<p>{{error}}</p>
+{%endif%}
+
+<form action = "{%url 'my_accounts:login'%}" method = 'post'>
+    {%csrf_token%}
+<form>
+    <div>
+        <input name='username' placeholder='put in your id'/>
+    </div>
+    <div>
+        <input type='password' name ='password' placeholder='put in your password'/>
+    </div>
+    <button type='submit'> log - in </button>
+</form>
+{%endblock%}
